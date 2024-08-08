@@ -1,14 +1,5 @@
 #!/usr/bin/env python
 
-# DESCRIPTION
-#
-# This application example shows how to connect to an STEVAL-PROTEUS1 device
-# flashed with the FP-AI-PDMWBSOC function pack, and to perform learning and
-# detection phases.
-
-
-# IMPORT
-
 import keyboard
 import logging
 import os
@@ -44,14 +35,8 @@ TARGET_DEVICE_MAC = "00:80:e1:26:46:63"  # Proteus - FP-AI-PDMWBSOC
 
 # CLASSES
 
-#
 # Implementation of the interface used by the Manager class to notify that a new
 # device has been discovered or that the scanning starts/stops.
-#
-#
-# Implementation of the interface used by the Manager class to notify that a new
-# device has been discovered or that the scanning starts/stops.
-#
 class MyManagerListener(ManagerListener):
 
     #
@@ -233,12 +218,9 @@ def release_device_resources(device):
             device.disconnect()
 
 
-#
 # Main application.
-#
 def main(argv):
     global command
-
     upstream_dict = {"message":""}
     with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
         json.dump(upstream_dict, upstream_file)
@@ -341,28 +323,31 @@ def main(argv):
 
         current_state = "IDLE"
         last_command = ""
-        # Actions.
-        print("LOOP STARTING")
+        
+        # COMMUNICATION LOOP.
         while True:
+            # Open commands communication file
             with open("/home/weston/proteus_stuff/STM32MP157F_Demo/downstream_commands.json", "r") as downstream_file:
                 try:
+                    # Copy command json into a dictionary
                     dict = json.load(downstream_file)
                 except Exception as e:
                     print("Trouble reading downsteam command file, trying again soon...")
                     print(e)
+                    # If unable to copy command json, return to beginning of loop after a brief pause
                     time.sleep(1)
                     continue
+            # If the received command is the same as the last received command
             if dict["command"] == last_command:
+                # Ignore it and return to the beginning of the loop after a brief pause
                 time.sleep(1)
                 continue
+            else:
+                # Keep track of this command as the most recent command
+                last_command = dict["command"]
+                
+            # START ANOMALY DETECTION
             if dict["command"] == 'start_ad':
-                last_command = "start_ad"
-                if current_state != "IDLE":
-                    upstream_dict["message"] = "DEVICE BUSY... COMMAND start_ad IGNORED."
-                    with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
-                        json.dump(upstream_dict, upstream_file)
-                    continue
-                # Anomaly detection.
                 command = feature_neai_anomaly_detection.Command.DETECT
                 logging.getLogger('BlueST').info('Anomaly detection started... Press "ESC" to stop.')
                 feature_neai_ad.detect()
@@ -387,9 +372,8 @@ def main(argv):
                             upstream_dict["message"] = msg_str
                             with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
                                 json.dump(upstream_dict, upstream_file)
-
+            # STOP ANOMALY DETECTION
             elif dict["command"] == 'stop_ad':
-                last_command = "stop_ad"
                 if current_state != "ANOMALY DETECTION":
                     upstream_dict["message"] = "DEVICE NOT IN ANOMALY DETECTION MODE SO COMMAND stop_ad IGNORED."
                     with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
@@ -402,13 +386,8 @@ def main(argv):
                 logging.getLogger('BlueST').info('Anomaly detection stopped.')
                 logging.getLogger('BlueST').info('')
                 current_state = "IDLE"
+            # RESET KNOWLEDGE
             elif dict["command"] == 'reset_knowledge':
-                last_command = "reset_knowledge"
-                if current_state != "IDLE":
-                    upstream_dict["message"] = "DEVICE BUSY... COMMAND reset_knowledge IGNORED."
-                    with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
-                        json.dump(upstream_dict, upstream_file)
-                    continue
                 # Resetting model.
                 command = feature_neai_anomaly_detection.Command.RESET
                 logging.getLogger('BlueST').info('Resetting model...')
@@ -418,14 +397,8 @@ def main(argv):
                 device.disable_notifications(feature_neai_ad)
                 logging.getLogger('BlueST').info('Model cleared.')
                 logging.getLogger('BlueST').info('')
-                current_state = "IDLE"
+            # LEARNING
             elif dict["command"] == 'learn':
-                last_command = "learn"
-                if current_state != "IDLE":
-                    upstream_dict["message"] = "DEVICE BUSY... COMMAND learn IGNORED."
-                    with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
-                        json.dump(upstream_dict, upstream_file)
-                    continue
                 command = feature_neai_anomaly_detection.Command.LEARN
                 logging.getLogger('BlueST').info('Learning started ({} seconds)...'.format(LEARNING_TIME_s))
                 feature_neai_ad.learn()
@@ -434,7 +407,6 @@ def main(argv):
                 device.disable_notifications(feature_neai_ad)
                 logging.getLogger('BlueST').info('Learning stopped.')
                 logging.getLogger('BlueST').info('')
-                current_state = "IDLE"
 
 
     except Exception as e:
