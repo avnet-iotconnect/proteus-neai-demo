@@ -61,7 +61,9 @@ def DeviceCallback(msg):
                     Sdk.sendAckCmd(data["ack"],7,"sucessfull") #fail=4,executed= 5,sucess=7,6=executedack
     else:
         print("rule command",msg)
+    # If the command is recognized as a PROTEUS NEAI Command
     if msg["cmd"] in ["start_ad", "stop_ad", "reset_knowledge", "learn"]:
+        # Send the command to the downstream JSON
         command_dict = {"command":msg["cmd"]}
         with open("/home/weston/proteus_stuff/STM32MP157F_Demo/downstream_commands.json", "w") as downstream_file:
             json.dump(command_dict, downstream_file)
