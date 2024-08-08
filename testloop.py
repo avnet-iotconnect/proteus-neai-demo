@@ -7,8 +7,6 @@ from iotconnect import IoTConnectSDK
 from datetime import datetime
 import os
 import importlib
-sys.path.append("/home/weston/STM32MP157F_Demo")
-sys.path.append("/home/weston/STM32MP157F_Demo/plugins")
 import config
 import proteus_AI_plugin
 
@@ -16,7 +14,7 @@ cpid = config.cpid
 env = config.env
 UniqueId = config.unique_id
 	
-SId = "NTg0YWY3MzAyODU0NGE3NzhmM2JjYTE2OTY0MDFlMDg=UDE6MDM6MzUuMzk="
+SId = ""
 Sdk=None
 interval = 5
 directmethodlist={}
