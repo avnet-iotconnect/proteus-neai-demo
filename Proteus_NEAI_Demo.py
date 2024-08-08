@@ -181,7 +181,7 @@ def BLE_loop():
         # Take note of the time that the BLE process is started
         helper_start_time_minute = int(datetime.datetime.now().minute)
         # Start BLE process
-        proteus_connection_process = subprocess.Popen(['python3', '/home/weston/proteus_stuff/STM32MP157F_Demo/ai_plugin_helper.py'])
+        proteus_connection_process = subprocess.Popen(['python3', '/home/weston/proteus_stuff/STM32MP157F_Demo/Proteus_NEAI_Comms.py'])
         while stop_flag == False:
             # Check pulse of BLE process
             still_alive = proteus_connection_process.poll()
