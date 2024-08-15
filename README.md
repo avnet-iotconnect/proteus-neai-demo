@@ -138,6 +138,10 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
    * You will also need to connect the STM32MP157 Discovery kit to your PC using a USB-A to micro-USB cable. Connect to the assigned COM Port using serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en), or a browser application like [Google Chrome Labs Serial Terminal](https://googlechromelabs.github.io/serial-terminal/). Optionally, you may connect the board to an external monitor using the HMDI port and a keyboard/mouse.
  
 ## Step 7: Prepare PROTEUS Sensor Module
+* To prepare your PROTEUS, you will need a custom NEAI Anomaly Detection firmware file. For the purposes of this simple demo, you can download a pre-made one by clicking on the PDMWBSOC.bin file in the repository, and then clicking as shown here:
+
+<img src=".//media/app_image_5.png"/>
+
 * After assembling your PROTEUS sensor module, power it on using a micro-usb cable.
 
 * On a smartphone (IOS or Android), install the ST BLE Sensor.
