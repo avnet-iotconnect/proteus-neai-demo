@@ -194,7 +194,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
  
 * Execute this command to run the rest of the automatic gateway setup:
   * ```/media/usbdrive/Proteus-NEAI-Demo/Proteus_Demo_Setup.sh```
-  * **NOTE: This setup script will take several minutes to complete.** 
+  * **NOTE: This setup script may take several minutes to complete.** 
  
 * The main IoTConnect program has been configured to run on boot, so now reboot the gateway with the command:
   * ```reboot```
