@@ -145,15 +145,15 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * Unzip the downloaded folder and then open it.
   
-* Navigate to the *iotc-python-examples-main* directory (the name of the overall repo and the first sub-directory will have the same name)
+* Navigate to the *Proteus-NEAI-Demo-main* directory (the name of the overall repo and the first sub-directory will have the same name after extraction)
   
-* Copy the *STM32MP157F_Demo* folder to a flash drive. This is the only part of the repository you will need for this demo.
+* Copy the interior *Proteus-NEAI-Demo-main* directory to a flash drive.
 
-* In the *STM32MP157F_Demo* directory on your flash drive, navigate to the *device_certificates* folder.
+* In the *Proteus-NEAI-Demo-main* directory on your flash drive, navigate to the *device_certificates* folder.
 
 * Copy your two individual device certificates from the folder you saved in Step 4 into this folder. **You cannot copy the whole certificate folder, you must copy the individual *.pem* and *.crt* files.**
 
-* Back in the *STM32MP157F_Demo* directory, open up the file *config.py* in a generic text editor.
+* Back in the *Proteus-NEAI-Demo-main* directory, open up the file *config.py* in a generic text editor.
 
 * To find your CPID and Environment, navigate to your main IoTConnect dashboard page, hover your curson over the gear icon on the tollbar located on the far-left side of the page, and then click "Key Vault":
 
@@ -166,9 +166,6 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 * Copy your CPID and Environment into the *cpid* and *env* fields of *config.py*, **within the quotation marks.**
 
 * Enter the Unique ID for your device from Step 4 into the *unique_id* field, **within the quotation marks.**
-
-* For this general demo, leave the *plugin* field as "Default"
-  *  To connect your gateway to a sensor and acquire real data, refer to the appropriate README for the supported sensor pack within the [plugins](https://github.com/avnet-iotconnect/iotc-python-examples/tree/main/STM32MP157F-DK2_Demo/plugins) directory.
 
 * Save the *config.py* file and close the text editor.
 
