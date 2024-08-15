@@ -1,4 +1,4 @@
-# STM32MP157F-DK2 Demos (For IoTConnect on AWS)
+# PROTEUS NEAI Anomaly Detection Demo on STM32MP157F-DK2 (For IoTConnect on AWS)
 
 This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/evaluation-tools/stm32mp157f-dk2.html) and an [STEVAL-PROTEUS1 Sensor Module](https://www.st.com/en/evaluation-tools/steval-proteus1.html) to run an IoTConnect program to monitor AI-based Anomaly-Detection data in real-time on the IoTConnect cloud platform using AWS. 
 
