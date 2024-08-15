@@ -193,7 +193,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * Enter the Unique ID for your device from Step 4 into the *unique_id* field, **within the quotation marks.**
 
-* Enter the MAC address for your PROTEUS from step 7 into the *mac_address* field, **including colons, within the quotation marks.**
+* Enter the MAC address for your PROTEUS from step 7 into the *mac_address* field, **including colons, letters lower-cased, within the quotation marks.**
 
 * Save the *config.py* file and close the text editor.
 
