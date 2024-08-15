@@ -136,9 +136,31 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 * To complete the setup process:
    * Connect your board to the internet by either using an ethernet cable, or by following the optional Wi-Fi configuration step below.
    * You will also need to connect the STM32MP157 Discovery kit to your PC using a USB-A to micro-USB cable. Connect to the assigned COM Port using serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en), or a browser application like [Google Chrome Labs Serial Terminal](https://googlechromelabs.github.io/serial-terminal/). Optionally, you may connect the board to an external monitor using the HMDI port and a keyboard/mouse.
-      
+ 
+## Step 7: Prepare PROTEUS Sensor Module
+* After assembling your PROTEUS sensor module, power it on using a micro-usb cable.
 
-## Step 7: Prepare Necessary Files
+* On a smartphone (IOS or Android), install the ST BLE Sensor.
+
+<img src=".//media/app_image_1.png"/>
+
+* Turn your device's bluetooth on, and then open the app. The PROTEUS module should be discovered.
+
+* Take note of the MAC address of your PROTEUS, including the colons. You will need to use this in the config file during the next step.
+
+<img src=".//media/app_image_2.png"/> 
+
+* After tapping on your PROTEUS in the device discovery screen, tap on the gear icon in the top-right of your screen, and then "Firmware Upgrade" in the resulting pop-up.
+
+<img src=".//media/app_image_3.png"/>
+
+* Tap on the blue folder icon, select the PDMWBSOC.bin file, and then tap the "UPGRADE" button to flash the firmware.
+
+<img src=".//media/app_image_4.png"/>
+
+* After the flash has completed, the PROTEUS will automatically reboot and you can close out of the app. Your PROTEUS is now ready to use.
+
+## Step 8: Prepare Necessary Files
 * In another browser tab, navigate to [the top of this repository](https://github.com/avnet-iotconnect/Proteus-NEAI-Demo/tree/main) and download the repository's zip file as shown here:
 
 <img src=".//media/image_a.png"/>
@@ -171,7 +193,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * Now remove the flash drive from your PC and insert it into a USB port on the STM32MP157F-DK2 gateway.
 
-## Step 8: Configure the Gateway
+## Step 9: Configure the Gateway
 
 * These steps can be completed using the serial terminal connected to the ST Discovery board, or using the weston terminal directly on the gateway.
 
@@ -199,7 +221,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 * The main IoTConnect program has been configured to run on boot, so now reboot the gateway with the command:
   * ```reboot```
 
-## Step 9: View the Data
+## Step 10: View the Data
 * If the "plugin" data field in the config.py file is left as "Default" the main program will send dummy data (random integers) to the "Random_Integer" attribute for the device in IoTConnect.
 
   * To connect your gateway to a sensor and acquire real data, refer to the appropriate README for the supported sensor pack within the [plugins](https://github.com/avnet-iotconnect/iotc-python-examples/tree/main/STM32MP157F-DK2_Demo/plugins) directory.
