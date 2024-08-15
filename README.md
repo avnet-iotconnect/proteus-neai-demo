@@ -139,7 +139,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
       
 
 ## Step 7: Prepare Necessary Files
-* In another browser tab, navigate to [the top of this repository] (https://github.com/avnet-iotconnect/Proteus-NEAI-Demo/tree/main) and download the repository's zip file as shown here:
+* In another browser tab, navigate to [the top of this repository](https://github.com/avnet-iotconnect/Proteus-NEAI-Demo/tree/main) and download the repository's zip file as shown here:
 
 <img src=".//media/image_a.png"/>
 
