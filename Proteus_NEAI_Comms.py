@@ -8,6 +8,7 @@ import threading
 import time
 import traceback
 import json
+import config
 
 from blue_st_sdk.manager import Manager
 from blue_st_sdk.manager import ManagerListener
@@ -29,7 +30,7 @@ LEARNING_TIME_s = 10
 NOTIFICATIONS_TIMEOUT_s = 0.05
 
 # MAC address of the device to connect to.
-TARGET_DEVICE_MAC = "00:80:e1:26:46:63"  # Proteus - FP-AI-PDMWBSOC
+TARGET_DEVICE_MAC = config.mac_address  # Proteus - FP-AI-PDMWBSOC
 
 
 # CLASSES
