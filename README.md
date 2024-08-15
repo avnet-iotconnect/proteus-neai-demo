@@ -44,14 +44,8 @@ The demos in this directory use a [Discovery kit with STM32MP157F MPU](https://w
 * Navigate back to the “Device” menu and click on “Create Device” in the top right corner of the screen.
 
 <img src=".//media/image5.png"/>
-
-* For the default configuration (no device naming configuration in final script), enter the following information and then click “Save and View”:
-   * Unique Id: STM32MP157F
-   * Display Name: STM32MP157F
-   * Entity: (Any Generic Entity Will Work)
-   * Template: MP157F
      
-* For a custom UniqueID/DisplayName (device naming configuration in final script), enter the following information and then click “Save and View”:
+* Enter the following information and then click “Save and View”:
    * Unique Id: <Your UniqueID/DisplayName Here>
    * Display Name: <Your UniqueID/DisplayName Here>
    * Entity: (Any Generic Entity Will Work)
