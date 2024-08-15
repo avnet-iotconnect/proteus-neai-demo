@@ -36,9 +36,9 @@ device_list=[]
 
 SdkOptions={
 	"certificate" : { 
-		"SSLKeyPath"  : "/home/weston/proteus_stuff/STM32MP157F_Demo/device_certificates/pk_" + UniqueId + ".pem", 
-		"SSLCertPath" : "/home/weston/proteus_stuff/STM32MP157F_Demo/device_certificates/cert_" + UniqueId + ".crt",
-		"SSLCaPath"   : "/home/weston/proteus_stuff/STM32MP157F_Demo/aws_cert/root-CA.pem"
+		"SSLKeyPath"  : "/home/weston/Proteus-NEAI-Demo-main/device_certificates/pk_" + UniqueId + ".pem", 
+		"SSLCertPath" : "/home/weston/Proteus-NEAI-Demo-main/device_certificates/cert_" + UniqueId + ".crt",
+		"SSLCaPath"   : "/home/weston/Proteus-NEAI-Demo-main/aws_cert/root-CA.pem"
 	},
     "offlineStorage":{
         "disabled": False,
@@ -78,7 +78,7 @@ def DeviceCallback(msg):
     if msg["cmd"] in ["start_ad", "stop_ad", "reset_knowledge", "learn"]:
         # Send the command to the downstream JSON
         command_dict = {"command":msg["cmd"]}
-        with open("/home/weston/proteus_stuff/STM32MP157F_Demo/downstream_commands.json", "w") as downstream_file:
+        with open("/home/weston/Proteus-NEAI-Demo-main/downstream_commands.json", "w") as downstream_file:
             json.dump(command_dict, downstream_file)
 
 
@@ -170,18 +170,18 @@ def BLE_loop():
     downstream_dict = {"command":""}
     #Clearing message buffer
     upstream_dict = {"message":""}
-    with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "w") as upstream_file:
+    with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "w") as upstream_file:
         json.dump(upstream_dict, upstream_file)
-    with open("/home/weston/proteus_stuff/STM32MP157F_Demo/downstream_commands.json", "w") as downstream_file:
+    with open("/home/weston/Proteus-NEAI-Demo-main/downstream_commands.json", "w") as downstream_file:
         json.dump(downstream_dict, downstream_file)
     while stop_flag == False:
         print("Establishing BLE connection to PROTEUS")
         # Restart bluetooth services
         setup_bluetooth()
         # Take note of the time that the BLE process is started
-        helper_start_time_minute = int(datetime.datetime.now().minute)
+        start_time_second = int(datetime.datetime.now().second)
         # Start BLE process
-        proteus_connection_process = subprocess.Popen(['python3', '/home/weston/proteus_stuff/STM32MP157F_Demo/Proteus_NEAI_Comms.py'])
+        proteus_connection_process = subprocess.Popen(['python3', '/home/weston/Proteus-NEAI-Demo-main/Proteus_NEAI_Comms.py'])
         while stop_flag == False:
             # Check pulse of BLE process
             still_alive = proteus_connection_process.poll()
@@ -191,16 +191,16 @@ def BLE_loop():
                 # Restart BLE process
                 break
             # Check to see if program has successfully kicked off
-            with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_message.json", "r") as upstream_file:
+            with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "r") as upstream_file:
                 try:
                     message_dict = json.load(upstream_file)         
                     message = message_dict["message"]
                     # If message buffer is still in default state
                     if message == "":
-                        now = int(datetime.datetime.now().minute)
-                        time_delta = now - helper_start_time_minute
-                        # If it has been over a minute since the proteus communication thread started
-                        if time_delta > 1 or (time_delta < 0 and time_delta > -59):
+                        now = int(datetime.datetime.now().second)
+                        time_delta = now - start_time_second
+                        # If it has been over 30 seconds since the proteus communication thread started
+                        if time_delta > 30 or (time_delta < 0 and time_delta > -30):
                             # Restart the BLE process
                             break
                     elif message != last_message:
@@ -211,7 +211,7 @@ def BLE_loop():
                     print(e)
        
             # Open JSON data
-            with open("/home/weston/proteus_stuff/STM32MP157F_Demo/upstream_data.json", "r") as upstream_file:
+            with open("/home/weston/Proteus-NEAI-Demo-main/upstream_data.json", "r") as upstream_file:
                 try:
                     data = json.load(upstream_file)
                 except:
@@ -226,7 +226,7 @@ def BLE_loop():
 
 
 def main():
-    global SId,cpid,env,SdkOptions,Sdk,ACKdirect,device_list,stop_flag
+    global SId,cpid,env,SdkOptions,Sdk,ACKdirect,device_list,stop_flag, telemetry
     try:
         with IoTConnectSDK(UniqueId,SdkOptions,DeviceConectionCallback) as Sdk:
             try:
@@ -242,7 +242,7 @@ def main():
                     dObj = [{
                         "uniqueId": UniqueId,
                         "time": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                        "data": proteus_AI_plugin.telemetry
+                        "data": telemetry
                     }]
                     sendBackToSDK(Sdk, dObj)
                     
