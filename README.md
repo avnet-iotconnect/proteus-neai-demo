@@ -181,7 +181,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * Back in the *Proteus-NEAI-Demo-main* directory, open up the file *config.py* in a generic text editor.
 
-* To find your CPID and Environment, navigate to your main IoTConnect dashboard page, hover your curson over the gear icon on the tollbar located on the far-left side of the page, and then click "Key Vault":
+* To find your CPID and Environment, navigate to your main IoTConnect dashboard page, hover your cursor over the gear icon on the tollbar located on the far-left side of the page, and then click "Key Vault":
 
 <img src=".//media/image9.png"/>
 
