@@ -193,6 +193,8 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * Enter the Unique ID for your device from Step 4 into the *unique_id* field, **within the quotation marks.**
 
+* Enter the MAC address for your PROTEUS from step 7 into the *mac_address* field, **including colons, within the quotation marks.**
+
 * Save the *config.py* file and close the text editor.
 
 * Now remove the flash drive from your PC and insert it into a USB port on the STM32MP157F-DK2 gateway.
