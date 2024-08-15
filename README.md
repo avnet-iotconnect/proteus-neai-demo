@@ -50,6 +50,7 @@ The demos in this directory use a [Discovery kit with STM32MP157F MPU](https://w
    * Display Name: <Your UniqueID/DisplayName Here>
    * Entity: (Any Generic Entity Will Work)
    * Template: MP157F
+   * Device Certificate: Auto-Generated
  
       * **NOTE: For setup simplicity, this demo is deisgned for the Unique ID and the Display Name to be exactly the same, so it is critical that you make them identical to each other. It will not work otherwise.**
  
