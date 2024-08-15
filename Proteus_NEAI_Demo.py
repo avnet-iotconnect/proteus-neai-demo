@@ -8,7 +8,6 @@ from datetime import datetime
 import os
 import importlib
 import config
-import proteus_AI_plugin
 import subprocess
 
 cpid = config.cpid
