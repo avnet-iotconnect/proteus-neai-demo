@@ -188,12 +188,12 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * **Wi-Fi Configuration (OPTIONAL)**
   * To connect the gateway to the wireless network, execute this command:
-    * ```/media/usbdrive/PROTEUS_MP157F_Demo/Wifi_Setup.sh```
+    * ```/media/usbdrive/Proteus-NEAI-Demo/Wifi_Setup.sh```
       * NOTE: You will be asked to enter your network SSID and password during this script, as well as if it is your first time connecting the gateway to Wi-Fi
         * If you have already connected the gateway to Wi-Fi before and need to change the SSID or password, simply run the script again and answer **Y** to the first prompt
  
 * Execute this command to run the rest of the automatic gateway setup:
-  * ```/media/usbdrive/PROTEUS_MP157F_Demo/Proteus_Demo_Setup.sh```
+  * ```/media/usbdrive/Proteus-NEAI-Demo/Proteus_Demo_Setup.sh```
   * **NOTE: This setup script will take several minutes to complete.** 
  
 * The main IoTConnect program has been configured to run on boot, so now reboot the gateway with the command:
