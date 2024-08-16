@@ -3,6 +3,7 @@ Description=Service to run Python IoTConnect program on boot.
 After=network.target
 
 [Service]
+ExecStartPre=/bin/sleep 30
 ExecStart=/usr/bin/python3 /home/weston/Proteus-NEAI-Demo-main/Proteus_NEAI_Demo.py
 
 [Install]
