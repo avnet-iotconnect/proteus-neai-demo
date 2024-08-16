@@ -4,6 +4,7 @@ apt-get update
 apt-get upgrade -y
 apt-get install python3-pip -y
 pip3 install paho-mqtt==1.6.1
+apt-get install opus-tools -y
 cp -r /media/usbdrive/Proteus-NEAI-Demo-main /home/weston
 cd /home/weston/Proteus-NEAI-Demo-main/iotc-python-sdk-master-std-21-patch/iotconnect-sdk-1.0
 python3 setup.py install
