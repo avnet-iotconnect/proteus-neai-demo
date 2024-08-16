@@ -155,6 +155,13 @@ def InitCallback(response):
 
 #This function resets the bluetooth system to make sure that no devices are connected at the start of the program
 def setup_bluetooth():
+    setup_process = pexpect.spawn('bluetoothctl', encoding='utf-8')
+    setup_process.expect('#')
+    setup_process.sendline('power off')
+    time.sleep(1)
+    setup_process.sendline('power on')
+    time.sleep(1)
+    setup_process.close()
     os.system("btmgmt le off")
     os.system("btmgmt le on")
     try:
