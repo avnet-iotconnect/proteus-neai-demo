@@ -250,11 +250,9 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
  <img src=".//media/image_102.png"/>
 
- * To teach the PROETUS a new NORMAL state, first send the "Stop Anomaly Detection" command.
-   
- * Next send the "Reset Knowledge" command to wipe the previous learning, and then wait for approximately 20 seconds.
-
- * Then, put the PROTEUS in the environment/state that it should recognize as "normal" and then send the "Activate Learning" command.
-
- * Your PROTEUS now has learned a new normal state and anomaly detection can be activated again.
+ * To teach the PROETUS a new NORMAL state:
+   * First send the "Stop Anomaly Detection" command.
+   * Next send the "Reset Knowledge" command to wipe the previous learning, and then wait for approximately 20 seconds.
+   * Then, put the PROTEUS in the environment/state that it should recognize as "normal" and then send the "Activate Learning" command.
+   * Your PROTEUS now has learned a new normal state and anomaly detection can be activated again.
 
