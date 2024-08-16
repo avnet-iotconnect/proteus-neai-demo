@@ -229,5 +229,11 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 * The main IoTConnect program has been configured to run on boot, so now reboot the gateway with the command:
   * ```reboot```
 
-## Step 10: View the Data
+## Step 10: Remotely Command the Proteus and View the Data
+* Navigate back to the “Device” menu and locate your device in the list.
+   * You should see that the entry in the "Device Status" column shows a green "CONNECTED" label.
+
+<img src=".//media/image13.png"/>
+
+* 
 
