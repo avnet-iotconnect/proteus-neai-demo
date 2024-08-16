@@ -255,12 +255,14 @@ def main():
             except KeyboardInterrupt:
                 print ("Keyboard Interrupt Exception")
                 stop_flag = True
-                ble_thread.join()
+                if ble_thread_thread != None and ble_thread.is_alive():
+                    ble_thread.join()
                 sys.exit(0)
 
             except Exception as ex:
                 stop_flag = True
-                ble_thread.join()
+                if ble_thread_thread != None and ble_thread.is_alive():
+                    ble_thread.join()
                 print(ex)
                 sys.exit(0)
 
@@ -268,12 +270,14 @@ def main():
     except KeyboardInterrupt:
         print ("Keyboard Interrupt Exception")
         stop_flag = True
-        ble_thread.join()
+        if ble_thread_thread != None and ble_thread.is_alive():
+            ble_thread.join()
         sys.exit(0)
 
     except Exception as ex:
         stop_flag = True
-        ble_thread.join()
+	if ble_thread_thread != None and ble_thread.is_alive():
+            ble_thread.join()
         print(ex)
         sys.exit(0)
 
