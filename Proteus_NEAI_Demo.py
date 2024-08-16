@@ -9,6 +9,7 @@ import os
 import importlib
 import config
 import subprocess
+import pexpect
 
 cpid = config.cpid
 env = config.env
@@ -25,6 +26,8 @@ telemetry = {
 
 #The main program sets this to false when the program needs to terminate
 stop_flag = False
+
+connected_flag = False
 	
 SId = ""
 Sdk=None
@@ -172,6 +175,7 @@ def setup_bluetooth():
 
 #This loop controls the BLE connection between the gateway and the proteus and spawns the program that dictates the behavior of the proteus
 def BLE_loop():
+    global connected_flag
     last_message = ""
     downstream_dict = {"command":""}
     #Clearing message buffer
@@ -185,7 +189,7 @@ def BLE_loop():
         # Restart bluetooth services
         setup_bluetooth()
         # Take note of the time that the BLE process is started
-        start_time_second = int(datetime.datetime.now().second)
+        start_time_second = int(datetime.now().second)
         # Start BLE process
         proteus_connection_process = subprocess.Popen(['python3', '/home/weston/Proteus-NEAI-Demo-main/Proteus_NEAI_Comms.py'])
         while stop_flag == False:
@@ -203,7 +207,7 @@ def BLE_loop():
                     message = message_dict["message"]
                     # If message buffer is still in default state
                     if message == "":
-                        now = int(datetime.datetime.now().second)
+                        now = int(datetime.now().second)
                         time_delta = now - start_time_second
                         # If it has been over 30 seconds since the proteus communication thread started
                         if time_delta > 30 or (time_delta < 0 and time_delta > -30):
@@ -212,6 +216,7 @@ def BLE_loop():
                     elif message != last_message:
                         print("MESSAGE FROM PROTEUS: " + message)
                         last_message = message
+                        connected_flag = True
                 except Exception as e:
                     print("PROBLEM OPENING JSON FILE (PROBABLY BEING WRITTEN TO CURRENTLY)")
                     print(e)
@@ -232,11 +237,12 @@ def BLE_loop():
 
 
 def main():
-    global SId,cpid,env,SdkOptions,Sdk,ACKdirect,device_list,stop_flag, telemetry
+    global SId,cpid,env,SdkOptions,Sdk,ACKdirect,device_list,stop_flag, telemetry, connected_flag
+    ble_thread = None
     try:
         with IoTConnectSDK(UniqueId,SdkOptions,DeviceConectionCallback) as Sdk:
             try:
-                ble_thread = threading.Thread(BLE_loop)
+                ble_thread = threading.Thread(target=BLE_loop)
                 ble_thread.start()
                 Sdk.onDeviceCommand(DeviceCallback)
                 Sdk.onTwinChangeCommand(TwinUpdateCallback)
@@ -245,23 +251,26 @@ def main():
                 Sdk.getTwins()
                 device_list=Sdk.Getdevice()
                 while True:
-                    dObj = [{
-                        "uniqueId": UniqueId,
-                        "time": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z"),
-                        "data": telemetry
-                    }]
-                    sendBackToSDK(Sdk, dObj)
+                    if connected_flag == True:
+                        dObj = [{
+                            "uniqueId": UniqueId,
+                            "time": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+                            "data": telemetry
+                        }]
+                        sendBackToSDK(Sdk, dObj)
+                    else:
+                        time.sleep(1)
                     
             except KeyboardInterrupt:
                 print ("Keyboard Interrupt Exception")
                 stop_flag = True
-                if ble_thread_thread != None and ble_thread.is_alive():
+                if ble_thread != None and ble_thread.is_alive():
                     ble_thread.join()
                 sys.exit(0)
 
             except Exception as ex:
                 stop_flag = True
-                if ble_thread_thread != None and ble_thread.is_alive():
+                if ble_thread != None and ble_thread.is_alive():
                     ble_thread.join()
                 print(ex)
                 sys.exit(0)
@@ -270,13 +279,13 @@ def main():
     except KeyboardInterrupt:
         print ("Keyboard Interrupt Exception")
         stop_flag = True
-        if ble_thread_thread != None and ble_thread.is_alive():
+        if ble_thread != None and ble_thread.is_alive():
             ble_thread.join()
         sys.exit(0)
 
     except Exception as ex:
         stop_flag = True
-	if ble_thread_thread != None and ble_thread.is_alive():
+        if ble_thread != None and ble_thread.is_alive():
             ble_thread.join()
         print(ex)
         sys.exit(0)
