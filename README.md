@@ -142,6 +142,8 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 <img src=".//media/app_image_5.png"/>
 
+* Since the firmware flashing will be done from a smartphone, you will need to send and save this file to your smartphone (email is probably the easiest way). 
+
 * After assembling your PROTEUS sensor module, power it on using a micro-usb cable.
 
 * On a smartphone (IOS or Android), install the ST BLE Sensor App.
