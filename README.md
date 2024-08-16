@@ -228,21 +228,4 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
   * ```reboot```
 
 ## Step 10: View the Data
-* If the "plugin" data field in the config.py file is left as "Default" the main program will send dummy data (random integers) to the "Random_Integer" attribute for the device in IoTConnect.
 
-  * To connect your gateway to a sensor and acquire real data, refer to the appropriate README for the supported sensor pack within the [plugins](https://github.com/avnet-iotconnect/iotc-python-examples/tree/main/STM32MP157F-DK2_Demo/plugins) directory.
-
-* Navigate back to the “Device” menu and select your device named "STM32MP157F" (or your custom Display Name if you did not use the default).
-   * You should see that the entry in the "Device Status" column shows a green "CONNECTED" label.
-
-<img src=".//media/image13.png"/>
-
-* Next, in the vertical toolbar on the left side of the page, select "Live Data."
-
-<img src=".//media/image14.png"/>
-
-* To get a more human-friendly report of the live telemetry data, click on the "Tabular" tab.
-   * This tab allows you to scroll vertically to view previous data entires, and horizontally to see each individual attribute.
-
-<img src=".//media/image15.png"/>
-# Proteus-NEAI-Demo
