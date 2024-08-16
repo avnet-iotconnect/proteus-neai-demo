@@ -144,11 +144,11 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * After assembling your PROTEUS sensor module, power it on using a micro-usb cable.
 
-* On a smartphone (IOS or Android), install the ST BLE Sensor.
+* On a smartphone (IOS or Android), install the ST BLE Sensor App.
 
 <img src=".//media/app_image_1.png"/>
 
-* Turn your device's bluetooth on, and then open the app. The PROTEUS module should be discovered.
+* Turn your device's bluetooth on, and then open the app. The PROTEUS module should be discovered. If not, refresh the page until it is.
 
 * Take note of the MAC address of your PROTEUS, including the colons. You will need to use this in the config file during the next step.
 
