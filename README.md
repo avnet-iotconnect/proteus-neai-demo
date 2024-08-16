@@ -230,10 +230,31 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
   * ```reboot```
 
 ## Step 10: Remotely Command the Proteus and View the Data
-* Navigate back to the “Device” menu and locate your device in the list.
+* Navigate back to the “Devices” menu and locate your device in the list.
    * You should see that the entry in the "Device Status" column shows a green "CONNECTED" label.
 
 <img src=".//media/image13.png"/>
 
-* 
+* After clicking on youir device, click on the "Command" button on the left sidebar, then select the "Activate Learning" from the dropdown, and click "Execute Command"
+
+<img src=".//media/image_101.png"/>
+
+* For the next 10 seconds, the device will "learn" what the "NORMAL" state is, so it is imperative that the PROTEUS is left alone during the entire learning duration.
+  * To play it safe, it is recommended to leave the PROTEUS alone for 20-30 seconds after sending the "Activate Learning" command. It has a built-in learning timer, so it the learning phase does not need to be manually ended.
+ 
+* After the 20-30 seconds are up, you can send the "Activate Anomaly Detection" command.
+
+* To view the Anomaly Detection data, navigate to the "Live Data" page (also on the left toolbar) and pay attention to the "NEAI_status" and "NEAI_similarity_percentage" entries.
+
+* In the example below, during the entries that reported as "NORMAL," the PROTEUS was left sitting ona  table, just as it was during the learning phase. During the entries that reported as "ANOMALY," the PROTEUS was being lightly shaken around.
+
+ <img src=".//media/image_102.png"/>
+
+ * To teach the PROETUS a new NORMAL state, first send the "Stop Anomaly Detection" command.
+   
+ * Next send the "Reset Knowledge" command to wipe the previous learning, and then wait for approximately 20 seconds.
+
+ * Then, put the PROTEUS in the environment/state that it should recognize as "normal" and then send the "Activate Learning" command.
+
+ * Your PROTEUS now has learned a new normal state and anomaly detection can be activated again.
 
