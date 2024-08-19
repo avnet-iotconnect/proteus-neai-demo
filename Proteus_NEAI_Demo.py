@@ -165,8 +165,6 @@ def setup_bluetooth():
     setup_process.sendline('power on')
     time.sleep(1)
     setup_process.close()
-    os.system("btmgmt le off")
-    os.system("btmgmt le on")
     try:
         os.system("rm /home/root/ble_catalog.json")
     except Exception:
