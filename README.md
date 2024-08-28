@@ -167,21 +167,21 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 * After the flash has completed, the PROTEUS will automatically reboot and you can close out of the app. Your PROTEUS is now ready to use.
 
 ## Step 8: Prepare Necessary Files
-* In another browser tab, navigate to [the top of this repository](https://github.com/avnet-iotconnect/Proteus-NEAI-Demo/tree/main) and download the repository's zip file as shown here:
+* In another browser tab, navigate to [the top of this repository](https://github.com/avnet-iotconnect/proteus-neai-demo/tree/main) and download the repository's zip file as shown here:
 
 <img src=".//media/image_a.png"/>
 
 * Unzip the downloaded folder and then open it.
   
-* Navigate to the *Proteus-NEAI-Demo-main* directory (the name of the overall repo and the first sub-directory will have the same name after extraction)
+* Navigate to the *proteus-neai-demo-main* directory (the name of the overall repo and the first sub-directory will have the same name after extraction)
   
-* Copy the interior *Proteus-NEAI-Demo-main* directory to a flash drive.
+* Copy the interior *proteus-neai-demo-main* directory to a flash drive.
 
-* In the *Proteus-NEAI-Demo-main* directory on your flash drive, navigate to the *device_certificates* folder.
+* In the *proteus-neai-demo-main* directory on your flash drive, navigate to the *device_certificates* folder.
 
 * Copy your two individual device certificates from the folder you saved in Step 4 into this folder. **You cannot copy the whole certificate folder, you must copy the individual *.pem* and *.crt* files.**
 
-* Back in the *Proteus-NEAI-Demo-main* directory, open up the file *config.py* in a generic text editor.
+* Back in the *proteus-neai-demo-main* directory, open up the file *config.py* in a generic text editor.
 
 * To find your CPID and Environment, navigate to your main IoTConnect dashboard page, hover your cursor over the gear icon on the tollbar located on the far-left side of the page, and then click "Key Vault":
 
