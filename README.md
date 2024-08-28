@@ -177,7 +177,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
   
 * Copy the interior *proteus-neai-demo-main* directory to a flash drive.
 
-* In the *proteus-neai-demo-main* directory on your flash drive, navigate to the *device_certificates* folder.
+* In the *proteus-neai-demo-main* directory on your flash drive, navigate to the *certificates* folder.
 
 * Copy your two individual device certificates from the folder you saved in Step 4 into this folder. **You cannot copy the whole certificate folder, you must copy the individual *.pem* and *.crt* files.**
 
