@@ -222,7 +222,7 @@ def release_device_resources(device):
 def main(argv):
     global command
     upstream_dict = {"message":""}
-    with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "w") as upstream_file:
+    with open("/home/weston/proteus-neai-demo-main/upstream_message.json", "w") as upstream_file:
         json.dump(upstream_dict, upstream_file)
 
     # Setting text logging level: 'DEBUG', 'INFO' (default), 'WARNING', 'ERROR', or 'CRITICAL'.
@@ -318,7 +318,7 @@ def main(argv):
         device.disable_notifications(feature_pnpl)
         logging.getLogger('BlueST').info('')
         upstream_dict["message"] = "1st COMMS SUCCESSFUL"
-        with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "w") as upstream_file:
+        with open("/home/weston/proteus-neai-demo-main/upstream_message.json", "w") as upstream_file:
             json.dump(upstream_dict, upstream_file)
 
         current_state = "IDLE"
@@ -327,7 +327,7 @@ def main(argv):
         # COMMUNICATION LOOP.
         while True:
             # Open commands communication file
-            with open("/home/weston/Proteus-NEAI-Demo-main/downstream_commands.json", "r") as downstream_file:
+            with open("/home/weston/proteus-neai-demo-main/downstream_commands.json", "r") as downstream_file:
                 try:
                     # Copy command json into a dictionary
                     dict = json.load(downstream_file)
@@ -356,7 +356,7 @@ def main(argv):
                 upstream_dict["message"] = ""
                 while True:
                     time.sleep(0.5)
-                    with open("/home/weston/Proteus-NEAI-Demo-main/downstream_commands.json", "r") as downstream_file:
+                    with open("/home/weston/proteus-neai-demo-main/downstream_commands.json", "r") as downstream_file:
                         try:
                             dict = json.load(downstream_file)
                         except:
@@ -370,13 +370,13 @@ def main(argv):
                             msg_str = "DEVICE IN ANOMALY DETECTION MODE... COMMAND " + dict["command"] + " IGNORED."
                             last_command = dict["command"]
                             upstream_dict["message"] = msg_str
-                            with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "w") as upstream_file:
+                            with open("/home/weston/proteus-neai-demo-main/upstream_message.json", "w") as upstream_file:
                                 json.dump(upstream_dict, upstream_file)
             # STOP ANOMALY DETECTION
             elif dict["command"] == 'stop_ad':
                 if current_state != "ANOMALY DETECTION":
                     upstream_dict["message"] = "DEVICE NOT IN ANOMALY DETECTION MODE SO COMMAND stop_ad IGNORED."
-                    with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "w") as upstream_file:
+                    with open("/home/weston/proteus-neai-demo-main/upstream_message.json", "w") as upstream_file:
                         json.dump(upstream_dict, upstream_file) 
                     continue
                 command = feature_neai_anomaly_detection.Command.STOP
