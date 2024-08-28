@@ -38,9 +38,9 @@ device_list=[]
 
 SdkOptions={
 	"certificate" : { 
-		"SSLKeyPath"  : "/home/weston/Proteus-NEAI-Demo-main/device_certificates/pk_" + UniqueId + ".pem", 
-		"SSLCertPath" : "/home/weston/Proteus-NEAI-Demo-main/device_certificates/cert_" + UniqueId + ".crt",
-		"SSLCaPath"   : "/home/weston/Proteus-NEAI-Demo-main/aws_cert/root-CA.pem"
+		"SSLKeyPath"  : "/home/weston/proteus-neai-demo-main/device_certificates/pk_" + UniqueId + ".pem", 
+		"SSLCertPath" : "/home/weston/proteus-neai-demo-main/device_certificates/cert_" + UniqueId + ".crt",
+		"SSLCaPath"   : "/home/weston/proteus-neai-demo-main/aws_cert/root-CA.pem"
 	},
     "offlineStorage":{
         "disabled": False,
@@ -80,7 +80,7 @@ def DeviceCallback(msg):
     if msg["cmd"] in ["start_ad", "stop_ad", "reset_knowledge", "learn"]:
         # Send the command to the downstream JSON
         command_dict = {"command":msg["cmd"]}
-        with open("/home/weston/Proteus-NEAI-Demo-main/downstream_commands.json", "w") as downstream_file:
+        with open("/home/weston/proteus-neai-demo-main/downstream_commands.json", "w") as downstream_file:
             json.dump(command_dict, downstream_file)
 
 
@@ -178,9 +178,9 @@ def BLE_loop():
     downstream_dict = {"command":""}
     #Clearing message buffer
     upstream_dict = {"message":""}
-    with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "w") as upstream_file:
+    with open("/home/weston/proteus-neai-demo-main/upstream_message.json", "w") as upstream_file:
         json.dump(upstream_dict, upstream_file)
-    with open("/home/weston/Proteus-NEAI-Demo-main/downstream_commands.json", "w") as downstream_file:
+    with open("/home/weston/proteus-neai-demo-main/downstream_commands.json", "w") as downstream_file:
         json.dump(downstream_dict, downstream_file)
     while stop_flag == False:
         print("Establishing BLE connection to PROTEUS")
@@ -189,7 +189,7 @@ def BLE_loop():
         # Take note of the time that the BLE process is started
         start_time_second = int(datetime.now().second)
         # Start BLE process
-        proteus_connection_process = subprocess.Popen(['python3', '/home/weston/Proteus-NEAI-Demo-main/Proteus_NEAI_Comms.py'])
+        proteus_connection_process = subprocess.Popen(['python3', '/home/weston/proteus-neai-demo-main/proteus-neai-comms.py'])
         while stop_flag == False:
             # Check pulse of BLE process
             still_alive = proteus_connection_process.poll()
@@ -199,7 +199,7 @@ def BLE_loop():
                 # Restart BLE process
                 break
             # Check to see if program has successfully kicked off
-            with open("/home/weston/Proteus-NEAI-Demo-main/upstream_message.json", "r") as upstream_file:
+            with open("/home/weston/proteus-neai-demo-main/upstream_message.json", "r") as upstream_file:
                 try:
                     message_dict = json.load(upstream_file)         
                     message = message_dict["message"]
