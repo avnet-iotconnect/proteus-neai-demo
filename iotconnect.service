@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 ExecStartPre=/bin/sleep 30
-ExecStart=/usr/bin/python3 /home/weston/Proteus-NEAI-Demo-main/Proteus_NEAI_Demo.py
+ExecStart=/usr/bin/python3 /home/weston/proteus-neai-demo-main/proteus-neai-demo.py
 
 [Install]
 WantedBy=multi-user.target
