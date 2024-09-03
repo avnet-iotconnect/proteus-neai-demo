@@ -181,7 +181,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * Copy your two individual device certificates from the folder you saved in Step 4 into this folder. **You cannot copy the whole certificate folder, you must copy the individual *.pem* and *.crt* files.**
 
-* Back in the *proteus-neai-demo-main* directory, open up the file *config.py* in a generic text editor.
+* In the *proteus-neai-demo-main/python-files* directory, open up the file *config.py* in a generic text editor.
 
 * To find your CPID and Environment, navigate to your main IoTConnect dashboard page, hover your cursor over the gear icon on the tollbar located on the far-left side of the page, and then click "Key Vault":
 
@@ -218,12 +218,12 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
 
 * **Wi-Fi Configuration (OPTIONAL)**
   * To connect the gateway to the wireless network, execute this command:
-    * ```/media/usbdrive/Proteus-NEAI-Demo/Wifi_Setup.sh```
+    * ```/media/usbdrive/proteus-neai-demo-main/scripts/wifi-setup.sh```
       * NOTE: You will be asked to enter your network SSID and password during this script, as well as if it is your first time connecting the gateway to Wi-Fi
         * If you have already connected the gateway to Wi-Fi before and need to change the SSID or password, simply run the script again and answer **Y** to the first prompt
  
 * Execute this command to run the rest of the automatic gateway setup:
-  * ```/media/usbdrive/Proteus-NEAI-Demo/Proteus_Demo_Setup.sh```
+  * ```/media/usbdrive/proteus-neai-demo-main/scripts/proteus-demo-setup.sh```
   * **NOTE: This setup script may take several minutes to complete.** 
  
 * The main IoTConnect program has been configured to run on boot, so now reboot the gateway with the command:
