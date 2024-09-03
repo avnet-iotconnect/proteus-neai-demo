@@ -46,7 +46,6 @@ from blue_st_sdk.utils.number_conversion import NumberConversion
 from blue_st_sdk.utils.number_conversion import LittleEndian
 from blue_st_sdk.utils.blue_st_exceptions import BlueSTInvalidOperationException
 from blue_st_sdk.utils.blue_st_exceptions import BlueSTInvalidDataException
-sys.path.append("/home/weston/proteus_stuff/STM32MP157F_Demo")
 
 # CLASSES
 
@@ -161,7 +160,7 @@ class FeatureNEAIAnomalyDetection(Feature):
             dict["progress"] = int(str(self.get_progress(sample)))
             dict["status"] = str(self.get_status(sample))
             dict["similarity"] = int(str(self.get_similarity(sample)))
-            with open("/home/weston/Proteus-NEAI-Demo-main/upstream_data.json","w") as upstream_file:
+            with open("/home/weston/proteus-neai-demo-main/upstream_data.json","w") as upstream_file:
                 json.dump(dict, upstream_file)
         return result
 
