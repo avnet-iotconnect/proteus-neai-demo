@@ -52,7 +52,7 @@ This demo will use a [Discovery kit with STM32MP157F MPU](https://www.st.com/en/
    * Template: MP157F
    * Device Certificate: Auto-Generated
  
-      * **NOTE: For setup simplicity, this demo is deisgned for the Unique ID and the Display Name to be exactly the same, so it is critical that you make them identical to each other. It will not work otherwise.**
+      * **NOTE: For setup simplicity, this demo is designed for the Unique ID and the Display Name to be exactly the same, so it is critical that you make them identical to each other. It will not work otherwise.**
  
 <img src=".//media/image6.png"/>
 
